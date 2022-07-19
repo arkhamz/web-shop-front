@@ -50,6 +50,6 @@
   color: #ffc416;
 }
 
-.card-stars svg:last-child {
+.card-stars .empty {
   color: #b2b2b2;
 }

@@ -9,7 +9,21 @@ import {
 
 function ProductCard({ prod }) {
   //destructure product object's properties
-  const { title, description, mainImg, price } = prod;
+  const { title, description, mainImg, price, rating } = prod;
+
+  const generateStars = (rating) => {
+    const starrArr = []; //this will eventually contain an array of stars
+    for (let i = 0; i < 5; i++) {
+      //if the current number is < rating, add filled star to array
+      if (i < rating) {
+        starrArr.push(<AiFillStar />);
+      } else {
+        //otherwise push an empty star to the array
+        starrArr.push(<AiOutlineStar className="empty" />);
+      }
+    }
+    return starrArr;
+  };
 
   return (
     <div className="product-card">
@@ -21,11 +35,9 @@ function ProductCard({ prod }) {
         <div className="card-price">
           <p>€{price}</p>
           <div className="card-stars">
-            <AiFillStar />
-            <AiFillStar />
-            <AiFillStar />
-            <AiFillStar />
-            <AiOutlineStar />
+            {generateStars(rating).map((star, i) => (
+              <span key={i}>{star}</span>
+            ))}
           </div>
         </div>
         <div className="card-text">
