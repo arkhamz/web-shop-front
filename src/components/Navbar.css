@@ -1,3 +1,14 @@
+/* General styling */
+svg {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Navbar Stuff */
+
 .navbar {
   width: 100%;
   background-color: #8568ff;
@@ -34,6 +45,20 @@
 .nav-search input {
   border-radius: 4px;
   border: none;
+  outline: none;
+  padding: 1.5px;
+}
+
+.nav-search-input {
+  position: relative;
+}
+
+.search {
+  position: absolute;
+  right: 3%;
+  bottom: 10%;
+  font-size: 13px;
+  filter: invert(0.8);
 }
 
 .icons {
@@ -41,6 +66,7 @@
   gap: 10px;
 }
 
-svg {
+/* active class for NavLink */
+.active {
   color: white;
 }

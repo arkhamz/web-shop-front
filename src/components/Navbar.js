@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { FaRegUser } from "react-icons/fa";
-import { AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
+import {
+  AiOutlineShoppingCart,
+  AiOutlineHeart,
+  AiOutlineSearch,
+} from "react-icons/ai";
 function Navbar() {
   return (
     <nav className="navbar">
@@ -12,18 +16,21 @@ function Navbar() {
             <span style={{ color: "white" }}>Shop</span>
           </li>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/shop">Shop</Link>
+            <NavLink to="/shop">Shop</NavLink>
           </li>
           <li>
-            <Link to="/details/1">Detail</Link>
+            <NavLink to="/details/1">Detail</NavLink>
           </li>
         </ul>
       </div>
       <div className="nav-search">
-        <input type="text" />
+        <div className="nav-search-input">
+          <input type="text" />
+          <AiOutlineSearch className="search" />
+        </div>
         <div className="icons">
           <FaRegUser />
           <AiOutlineShoppingCart />
