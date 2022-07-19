@@ -1,0 +1,55 @@
+/* product card styling */
+
+.product-card {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  /* grid-template-columns: 1fr 1fr; */
+}
+
+.card-price {
+  display: flex;
+  gap: 20px;
+  color: #111c85;
+}
+
+.card-title h5 {
+  color: #111c85;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-image {
+  width: 150px;
+  height: 150px;
+  /* width & height from figma */
+}
+
+.card-image img {
+  border-radius: 6px;
+}
+
+.card-text {
+  color: #9295aa;
+}
+
+.card-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.card-icons svg {
+  color: #535399;
+}
+
+.card-stars svg {
+  color: #ffc416;
+}
+
+.card-stars svg:last-child {
+  color: #b2b2b2;
+}
