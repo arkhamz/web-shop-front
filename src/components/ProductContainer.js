@@ -6,9 +6,10 @@ import {
   AiOutlineHeart,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import DetailsTabs from "./DetailsTabs";
 
 const ProductContainer = ({ object }) => {
-  console.log("productContainer test", object.title);
+  console.log("productContainer test", object);
 
   const generateStars = (rating) => {
     const stars = [];
@@ -62,7 +63,26 @@ const ProductContainer = ({ object }) => {
                 <AiOutlineHeart style={{ color: "#151875" }} /> Favorite
               </pre>
             </button>
-            <p>Categories: </p>
+            <br />
+            <br />
+            <p>Categories: {object.category.title}</p>
+            <br />
+            <br />
+            <div id="socialMediaIcons">
+              Share {"     "}
+              <img
+                src="https://shop.belomed.com/web/images/ic_facebook.svg"
+                alt=""
+              />
+              <img
+                src="https://icons-for-free.com/download-icon-instagram+icon-1320168276654160044_512.png"
+                alt=""
+              />
+              <img
+                src="https://www.svgrepo.com/show/308971/twitter-social-media-social-network-logo.svg"
+                alt=""
+              />
+            </div>
           </div>
         </div>
       </div>

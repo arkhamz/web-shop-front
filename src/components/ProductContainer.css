@@ -81,6 +81,13 @@ img {
   color: #151875;
 }
 
+#socialMediaIcons {
+  width: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 /* tabs */
 .productTabs {
   background-color: #f9f8fe;
