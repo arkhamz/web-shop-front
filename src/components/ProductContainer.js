@@ -87,8 +87,7 @@ const ProductContainer = ({ object }) => {
         </div>
       </div>
       <div className="productTabs">
-        product tabs
-        <p>{object.description}</p>
+        <DetailsTabs description={object.description} />
       </div>
     </div>
   );
