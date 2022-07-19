@@ -1,5 +1,9 @@
-function CategoryFilter() {
-  return <form action="" className="category-filter"></form>;
+function CategoryFilter({ categories }) {
+  return (
+    <form action="" className="category-filter">
+      <input type="checkbox" name="" id="" />
+    </form>
+  );
 }
 
 export default CategoryFilter;
