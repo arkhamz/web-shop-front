@@ -1,4 +1,5 @@
 import "./ProductContainer.css";
+import { Link } from "react-router-dom";
 
 const ProductContainer = ({ object }) => {
   console.log("productContainer test", object.title);
@@ -6,7 +7,8 @@ const ProductContainer = ({ object }) => {
     <div className="productContainer">
       {/* three containers to house the details and description/review tabs and links */}
       <div className="links">
-        <p>links here</p>
+        <Link to="/products">Products .</Link>{" "}
+        <span style={{ color: "hotpink" }}>{object.title}</span>
       </div>
       <div className="productContent">
         {/* image + specifics in one div */}

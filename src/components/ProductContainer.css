@@ -1,7 +1,31 @@
 .productContainer {
+  margin: 0 auto;
+  width: 70%;
+  padding: 40px 10%;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
 }
 
 .productContent {
+  display: flex;
+  gap: 5%;
+  max-height: 30%;
+}
+
+.productImage {
+  width: 10%;
+  min-width: 300px;
+}
+
+img {
+  width: 100%;
+}
+
+.productDetails {
+  width: 10%;
+  min-width: 300px;
+  border-style: solid;
 }
 
 .productTabs {

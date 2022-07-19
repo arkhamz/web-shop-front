@@ -25,7 +25,6 @@ function Details() {
 
   return (
     <div className="details-page">
-      <h1>details page!</h1>
       {!currentProduct ? (
         "nothing yet!"
       ) : (
