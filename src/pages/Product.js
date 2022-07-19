@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 
 function Product() {
   const [products, setProducts] = useState(null);
+  const [categories, setCategories] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -27,11 +28,21 @@ function Product() {
         setLoading(false);
       }
     }
-    //end of async function
-    getProducts();
-  }, []);
+    //function for getting categories
+    async function getCategories() {
+      const URL = "http://localhost:4000/categories";
+      try {
+        const response = await axios.get(URL);
+        const dbCategories = response.data;
+        setCategories(dbCategories);
+      } catch (e) {
+        console.log(e.message);
+      }
+    }
 
-  if (products) console.log(products);
+    getProducts();
+    getCategories();
+  }, []);
 
   return (
     <div className="products">
