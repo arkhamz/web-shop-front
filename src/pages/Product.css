@@ -1,0 +1,26 @@
+.products {
+  width: 100%;
+}
+
+.product-list {
+  width: 60%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  row-gap: 10px;
+}
+
+/* category */
+
+.products-categories {
+  width: fit-content;
+  margin-left: 5px;
+}
+
+.category {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
