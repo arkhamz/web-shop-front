@@ -4,7 +4,7 @@ function CategoryFilter({ categories, handleFilterChange }) {
     <>
       {categories.map(function (cat, index, arr) {
         //get title & id from category object
-        const { title, id } = cat;
+        const { title, id } = cat; //id is category ID
         return (
           <div className="category" key={id}>
             <input
