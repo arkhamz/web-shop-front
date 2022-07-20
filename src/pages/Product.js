@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import CategoryFilter from "../components/CategoryFilter";
+import PriceFilter from "../components/PriceFilter";
 
 function Product() {
   const [products, setProducts] = useState(null);
@@ -10,6 +11,7 @@ function Product() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [categoryIds, setCategoryIds] = useState([]);
+  const [pricePairs, setPricePairs] = useState([]);
 
   useEffect(
     function () {
@@ -35,6 +37,26 @@ function Product() {
             //setProducts down there
             return setLoading(false);
           }
+
+          if (pricePairs.length > 0) {
+            //check if each product's price is  equal to min and less than or equal to max
+            const filtered = dbProducts.filter(function (item, index, arr) {
+              let verdict;
+
+              for (const pair of pricePairs) {
+                if (item.price >= pair[0] && item.price < pair[1]) {
+                  verdict = true;
+                } else {
+                  verdict = false;
+                }
+              }
+
+              return verdict;
+            });
+            setProducts(filtered);
+            return setLoading(false);
+          }
+
           setProducts(dbProducts);
           setLoading(false);
         } catch (e) {
@@ -58,9 +80,9 @@ function Product() {
       getProducts();
       getCategories();
     },
-    [categoryIds]
+    [categoryIds, pricePairs]
   );
-
+  //function for removing category Ids (from checkboxes) from state array, or adding them
   function handleFilterChange(id) {
     //check if the categoryId array includes id already, if it does, remove it by filtering
     if (categoryIds.includes(id)) {
@@ -74,15 +96,51 @@ function Product() {
     }
   }
 
+  function handlePriceFilterChange(e) {
+    //check if the target is an input
+    if (e.target.tagName.toLowerCase() === "input") {
+      const max = Number(e.target.dataset.max);
+      const min = Number(e.target.dataset.min);
+      const pair = [min, max];
+
+      //returns true if pair is inside pricePair Arr
+      const isIncluded = pricePairs.find(function (item) {
+        if (item[0] === pair[0] && item[1] === pair[1]) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+
+      //if the pair is already included in pricepairs, remove it
+      if (isIncluded) {
+        const updated = pricePairs.filter(function (item, index) {
+          return item[0] !== min && item[1] !== max;
+        });
+        setPricePairs(updated);
+      } else {
+        //add pair to pricePairs
+        setPricePairs([...pricePairs, pair]);
+      }
+    } else {
+      return;
+    }
+  }
+
+  console.log(pricePairs);
+
   return (
     <div className="products">
-      <div className="products-categories">
+      <div className="products-filters">
         <form>
           {categories && (
-            <CategoryFilter
-              categories={categories}
-              handleFilterChange={handleFilterChange}
-            />
+            <>
+              <CategoryFilter
+                categories={categories}
+                handleFilterChange={handleFilterChange}
+              />
+              <PriceFilter handlePriceFilterChange={handlePriceFilterChange} />
+            </>
           )}
         </form>
       </div>
