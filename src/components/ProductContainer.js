@@ -9,7 +9,9 @@ import {
 import DetailsTabs from "./DetailsTabs";
 
 //component body
-const ProductContainer = ({ object }) => {
+const ProductContainer = ({ cartUpdater, object }) => {
+  //add state to manage whether the cart button shows 'add to cart' or 'added already'
+
   //function to insert stars according to rating
   const generateStars = (rating) => {
     const stars = [];
@@ -21,6 +23,11 @@ const ProductContainer = ({ object }) => {
       }
     }
     return stars;
+  };
+
+  //when clicked it will pass the product object up to app.js and add it to the cart
+  const addToCart = () => {
+    cartUpdater(object);
   };
 
   //placheholder event handler for review, favorite, and cart buttons
@@ -57,7 +64,7 @@ const ProductContainer = ({ object }) => {
               tellus porttitor purus, et volutpat sit.
             </p>
             <br />
-            <button onClick={btnPlaceholderFunc} id="cartButton">
+            <button onClick={addToCart} id="cartButton">
               {" "}
               <pre>
                 <AiOutlineShoppingCart /> {"  "}Add to Cart

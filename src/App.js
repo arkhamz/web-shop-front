@@ -10,10 +10,18 @@ function App() {
 
   //this gets passed down and takes a product object. updates cart state when cart btns are clicked
   const cartUpdater = (productObject) => {
-    //make a copy and add the newly clicked product to it
-    const newCart = [...cart, productObject];
-    setCart(newCart);
+    //make a copy and check if the product is already present in the , then add it or filter it out
+    if (cart.length >= 1) {
+      const newCart = cart.filter((product) => {
+        return product.id !== productObject.id;
+      });
+      setCart([...newCart, productObject]);
+    } else {
+      setCart([...cart, productObject]);
+    }
   };
+
+  console.log("cart state", cart);
 
   return (
     <div className="App">
