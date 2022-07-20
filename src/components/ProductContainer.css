@@ -1,0 +1,102 @@
+/* whole component */
+.productContainer {
+  margin: 0 auto;
+  width: 70%;
+  padding: 40px 10%;
+  display: flex;
+  gap: 50px;
+  flex-direction: column;
+}
+
+/* link styling */
+.productContainer a,
+a:active,
+a:visited,
+a:focus {
+  text-decoration: none;
+  color: black;
+}
+
+/* image and details */
+.productContent {
+  display: flex;
+  gap: 5%;
+  max-height: 30%;
+}
+
+/* image div */
+.productImage {
+  width: 10%;
+  min-width: 300px;
+  max-width: 300px;
+}
+
+img {
+  width: 100%;
+}
+
+/* details  */
+.productDetails {
+  width: 10%;
+  min-width: 300px;
+}
+
+.productDetails h3 {
+  color: #0d134e;
+}
+
+.starSpan svg {
+  color: #ffc416;
+}
+
+.productDetails button {
+  all: unset;
+  margin-left: 5px;
+  /* padding: 0px 5px; */
+  padding: 5px 10px;
+  cursor: pointer;
+  border-style: solid;
+  border-color: #151875;
+  border-width: 1px;
+  border-radius: 5px;
+  color: #151875;
+}
+
+.productDetails span {
+  color: #151875;
+}
+
+#cartButton {
+  color: white;
+  background-color: hotpink;
+  border-style: none;
+}
+
+#heartButtonIcon {
+  padding: 0px 5px;
+}
+
+#heartButtonIcon svg {
+  display: inline;
+  color: #151875;
+}
+
+#socialMediaIcons {
+  width: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+/* tabs */
+.productTabs {
+  background-color: #f9f8fe;
+  width: 100vw;
+  padding: 30px 26% 100px;
+}
+
+/* making sure the text stays the same width as the rest of the content on the page */
+.productTabs p {
+  min-width: 600px;
+  max-width: 601px;
+}
