@@ -2,7 +2,6 @@ import { useState } from "react";
 
 const DetailsTabs = ({ description }) => {
   const [activeTab, setActiveTab] = useState("Description");
-  console.log(activeTab);
 
   const tabSwitcher = (e) => {
     // console.log(e.target.textContent);
