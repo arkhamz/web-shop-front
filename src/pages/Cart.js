@@ -9,7 +9,13 @@ const Cart = ({ cartState }) => {
       : cartState.map((product) => {
           return (
             <div key={product.id} className="cartListItem">
-              {product.title}
+              <div id="cartItemTitle">
+                <img src={product.mainImg} alt="" />
+                {product.title}
+              </div>
+              <div id="cartItemPrice">€{product.price}</div>
+              <div id="cartItemQuantity">lol</div>
+              <div id="cartItemTotal">{product.price}</div>
             </div>
           );
         });

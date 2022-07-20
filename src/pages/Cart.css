@@ -49,6 +49,29 @@
   flex-direction: column;
 }
 
+.cartListItem {
+  border-bottom: 1px solid rgb(197, 195, 195);
+  padding: 15px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.cartListItem img {
+  max-width: 50px;
+}
+
+#cartItemTitle,
+#cartItemPrice,
+#cartItemQuantity,
+#cartItemTotal {
+  flex: 1;
+}
+
+#cartItemTitle {
+  display: flex;
+  flex: 2;
+}
+
 /* pink btns at bottom */
 .cartListBtns {
   display: flex;
