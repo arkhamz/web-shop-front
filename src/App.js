@@ -3,6 +3,7 @@ import { Navbar } from "./components";
 import { Routes, Route } from "react-router-dom";
 import Product from "./pages/Product";
 import Details from "./pages/Details";
+import Cart from "./pages/Cart";
 import { useState } from "react";
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
             element={<Details cartState={cart} cartUpdater={cartUpdater} />}
           />
           <Route />
+          {/* add this route when Cart component is made */}
+          <Route path="/cart" element={<Cart cartState={cart} />} />
         </Routes>
       </div>
     </div>

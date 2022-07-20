@@ -31,7 +31,7 @@ const ProductContainer = ({ cartState, cartUpdater, object }) => {
     cartUpdater(object);
   };
 
-  //if this product object is already present in cart state, we change the btn
+  //if this product object is already present in cart state, we change the btn and its styling
   const cartBtn = cartState.find((product) => {
     return product.id === object.id;
   }) ? (
