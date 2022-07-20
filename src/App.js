@@ -31,7 +31,7 @@ function App() {
           <Route path="/" element={<Product />} />
           <Route
             path="/details/:id"
-            element={<Details cartUpdater={cartUpdater} />}
+            element={<Details cartState={cart} cartUpdater={cartUpdater} />}
           />
           <Route />
         </Routes>

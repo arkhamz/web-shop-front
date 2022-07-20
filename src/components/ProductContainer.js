@@ -9,7 +9,7 @@ import {
 import DetailsTabs from "./DetailsTabs";
 
 //component body
-const ProductContainer = ({ cartUpdater, object }) => {
+const ProductContainer = ({ cartState, cartUpdater, object }) => {
   //add state to manage whether the cart button shows 'add to cart' or 'added already'
 
   //function to insert stars according to rating
@@ -25,10 +25,37 @@ const ProductContainer = ({ cartUpdater, object }) => {
     return stars;
   };
 
+  console.log("cartstate inside of productcontainer", cartState);
   //when clicked it will pass the product object up to app.js and add it to the cart
   const addToCart = () => {
     cartUpdater(object);
   };
+
+  //if this product object is already present in cart state, we change the btn
+  const cartBtn = cartState.find((product) => {
+    return product.id === object.id;
+  }) ? (
+    <button
+      disabled
+      style={{ cursor: "default", backgroundColor: "#a04170" }}
+      onClick={addToCart}
+      id="cartButton"
+    >
+      {" "}
+      <pre>
+        <AiOutlineShoppingCart /> {"  "}
+        Already in Cart!
+      </pre>
+    </button>
+  ) : (
+    <button onClick={addToCart} id="cartButton">
+      {" "}
+      <pre>
+        <AiOutlineShoppingCart /> {"  "}
+        Add to Cart
+      </pre>
+    </button>
+  );
 
   //placheholder event handler for review, favorite, and cart buttons
   const btnPlaceholderFunc = (e) => {
@@ -64,12 +91,7 @@ const ProductContainer = ({ cartUpdater, object }) => {
               tellus porttitor purus, et volutpat sit.
             </p>
             <br />
-            <button onClick={addToCart} id="cartButton">
-              {" "}
-              <pre>
-                <AiOutlineShoppingCart /> {"  "}Add to Cart
-              </pre>
-            </button>{" "}
+            {cartBtn}{" "}
             <button onClick={btnPlaceholderFunc}>
               <pre>
                 <AiOutlineHeart style={{ color: "#151875" }} /> Favorite

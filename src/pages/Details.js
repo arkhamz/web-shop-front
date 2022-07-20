@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ProductContainer from "../components/ProductContainer";
 
-function Details({ cartUpdater }) {
+function Details({ cartUpdater, cartState }) {
   const { id } = useParams();
 
   const [currentProduct, setCurrentProduct] = useState();
@@ -28,7 +28,11 @@ function Details({ cartUpdater }) {
       {!currentProduct ? (
         "nothing yet!"
       ) : (
-        <ProductContainer cartUpdater={cartUpdater} object={currentProduct} />
+        <ProductContainer
+          cartState={cartState}
+          cartUpdater={cartUpdater}
+          object={currentProduct}
+        />
       )}
     </div>
   );
