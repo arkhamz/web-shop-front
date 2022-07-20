@@ -1,8 +1,25 @@
-function CategoryFilter({ categories }) {
+//Group of category filter checkboxes
+function CategoryFilter({ categories, handleFilterChange }) {
   return (
-    <form action="" className="category-filter">
-      <input type="checkbox" name="" id="" />
-    </form>
+    <>
+      {categories.map(function (cat, index, arr) {
+        //get title & id from category object
+        const { title, id } = cat;
+        return (
+          <div className="category" key={id}>
+            <input
+              onChange={function () {
+                handleFilterChange(id);
+              }}
+              type="checkbox"
+              name=""
+              id={title.toLowerCase()}
+            />
+            <label htmlFor={title.toLowerCase()}>{title}</label>
+          </div>
+        );
+      })}
+    </>
   );
 }
 
