@@ -15,12 +15,13 @@ function ProductCard({ prod }) {
     const starrArr = []; //this will eventually contain an array of stars
     for (let i = 0; i < 5; i++) {
       //5 is total  no. of stars
-      //if the current number is < rating, add filled star to array
+      //if the current number is < 5 stars, do the following
       //basically add a star to array until i = rating
       if (i < rating) {
-        starrArr.push(<AiFillStar />);
+        //if current no. less than rating
+        starrArr.push(<AiFillStar />); //add filled star to array
       } else {
-        //otherwise push an empty star to the array
+        //push empty star to array if current no. is above rating
         starrArr.push(<AiOutlineStar className="empty" />);
       }
     }
