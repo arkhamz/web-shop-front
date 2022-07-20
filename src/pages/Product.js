@@ -61,7 +61,7 @@ function Product() {
     [categoryIds]
   );
 
-  function handleCheck(id) {
+  function handleFilterChange(id) {
     //check if the categoryId array includes id already, if it does, remove it by filtering
     if (categoryIds.includes(id)) {
       //filter out this id
@@ -78,23 +78,12 @@ function Product() {
     <div className="products">
       <div className="products-categories">
         <form>
-          {categories &&
-            categories.map(function (cat, index, arr) {
-              const { title, id } = cat;
-              return (
-                <div className="category" key={id}>
-                  <input
-                    onChange={function () {
-                      handleCheck(id);
-                    }}
-                    type="checkbox"
-                    name=""
-                    id={title.toLowerCase()}
-                  />
-                  <label htmlFor={title.toLowerCase()}>{title}</label>
-                </div>
-              );
-            })}
+          {categories && (
+            <CategoryFilter
+              categories={categories}
+              handleFilterChange={handleFilterChange}
+            />
+          )}
         </form>
       </div>
       <ul className="product-list">
