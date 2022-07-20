@@ -8,9 +8,11 @@ import {
 } from "react-icons/ai";
 import DetailsTabs from "./DetailsTabs";
 
+//component body
 const ProductContainer = ({ object }) => {
   console.log("productContainer test", object);
 
+  //function to insert stars according to rating
   const generateStars = (rating) => {
     const stars = [];
     for (let i = 0; i < 5; i++) {
@@ -21,6 +23,11 @@ const ProductContainer = ({ object }) => {
       }
     }
     return stars;
+  };
+
+  //placheholder event handler for review, favorite, and cart buttons
+  const btnPlaceholderFunc = (e) => {
+    console.log("you clicked: ", e.target);
   };
 
   return (
@@ -42,7 +49,7 @@ const ProductContainer = ({ object }) => {
             <span className="starSpan">
               {generateStars(object.rating)}
             </span>{" "}
-            <button>Add Review</button>
+            <button onClick={btnPlaceholderFunc}>Add Review</button>
             <br />
             <span>€{object.price}</span>
             <br />
@@ -52,13 +59,13 @@ const ProductContainer = ({ object }) => {
               tellus porttitor purus, et volutpat sit.
             </p>
             <br />
-            <button id="cartButton">
+            <button onClick={btnPlaceholderFunc} id="cartButton">
               {" "}
               <pre>
                 <AiOutlineShoppingCart /> {"  "}Add to Cart
               </pre>
             </button>{" "}
-            <button>
+            <button onClick={btnPlaceholderFunc}>
               <pre>
                 <AiOutlineHeart style={{ color: "#151875" }} /> Favorite
               </pre>
