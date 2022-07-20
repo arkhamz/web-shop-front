@@ -91,6 +91,7 @@ img {
 /* tabs */
 .productTabs {
   background-color: #f9f8fe;
+  height: 350px;
   width: 100vw;
   padding: 30px 26% 100px;
 }

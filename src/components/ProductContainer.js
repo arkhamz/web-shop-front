@@ -91,9 +91,8 @@ const ProductContainer = ({ object }) => {
           </div>
         </div>
       </div>
-      <div className="productTabs">
-        <DetailsTabs description={object.description} />
-      </div>
+
+      <DetailsTabs description={object.description} />
     </div>
   );
 };

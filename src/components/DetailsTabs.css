@@ -1,0 +1,27 @@
+#tabContent {
+  padding: 40px 0px;
+}
+
+#tabContent h3 {
+  color: #151875;
+  margin: 20px 0px;
+}
+
+#tabContent p {
+  color: #a9acc6;
+}
+
+.productTabs button {
+  all: unset;
+  margin-right: 50px;
+  color: #151875;
+  cursor: pointer;
+}
+
+.productTabs button:hover {
+  border-bottom: 2px solid #151875;
+}
+
+button.selected {
+  border-bottom: 2px solid #151875;
+}
