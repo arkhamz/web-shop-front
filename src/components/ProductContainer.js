@@ -10,8 +10,6 @@ import DetailsTabs from "./DetailsTabs";
 
 //component body
 const ProductContainer = ({ object }) => {
-  console.log("productContainer test", object);
-
   //function to insert stars according to rating
   const generateStars = (rating) => {
     const stars = [];
