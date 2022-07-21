@@ -19,6 +19,8 @@ function App() {
       rating: 3.9,
       title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
       updatedAt: "2022-07-18T12:37:18.492Z",
+      quantity: 1,
+      total: 10,
     },
     {
       categoryId: 3,
@@ -32,6 +34,8 @@ function App() {
       rating: 4.1,
       title: "Mens Casual Premium Slim Fit T-Shirts ",
       updatedAt: "2022-07-18T12:37:18.492Z",
+      quantity: 1,
+      total: 10,
     },
     {
       categoryId: 3,
@@ -44,23 +48,48 @@ function App() {
       rating: 4.7,
       title: "Mens Cotton Jacket",
       updatedAt: "2022-07-18T12:37:18.492Z",
+      quantity: 1,
+      total: 10,
     },
   ]);
 
   //this gets passed down and takes a product object. updates cart state when cart btns are clicked
-  const cartUpdater = (productObject) => {
-    //make a copy and check if the product is already present in the , then add it or filter it out
+  const cartUpdater = (productObject, string) => {
+    //will remove object if "remove" is passed with it
+    if (string === "remove") {
+      const cartRemoved = [...cart].filter((product) => {
+        return product.id !== productObject.id;
+      });
+
+      return setCart(cartRemoved);
+    }
+
+    if (string === "all") {
+      return setCart([]);
+    }
+
+    //make sure that if there is no quantity yet that it inserts 1 as quantity !!! THIS IS ONLY FOR DEVELOPMENT
+    if (!productObject.quantity || !productObject.total) {
+      productObject.quantity = 1;
+      const totalProdPrice = productObject.quantity * productObject.price;
+      productObject.total = totalProdPrice.toFixed(2);
+    }
+
+    //make a copy and check if the product is already present in the array, then add it or filter it out
     if (cart.length >= 1) {
       const newCart = cart.filter((product) => {
         return product.id !== productObject.id;
       });
-      setCart([...newCart, productObject]);
+
+      //sort the array by id in order to keep the products from shifting around
+      const sortedCart = [...newCart, productObject].sort((a, b) => {
+        return a.id - b.id;
+      });
+      setCart(sortedCart);
     } else {
       setCart([...cart, productObject]);
     }
   };
-
-  console.log("cart state", cart);
 
   return (
     <div className="App">
@@ -74,7 +103,10 @@ function App() {
           />
           <Route />
           {/* add this route when Cart component is made */}
-          <Route path="/cart" element={<Cart cartState={cart} />} />
+          <Route
+            path="/cart"
+            element={<Cart cartState={cart} cartUpdater={cartUpdater} />}
+          />
         </Routes>
       </div>
     </div>
