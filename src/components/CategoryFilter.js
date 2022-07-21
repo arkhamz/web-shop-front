@@ -17,7 +17,9 @@ function CategoryFilter({ categories, handleFilterChange }) {
               name=""
               id={title.toLowerCase()}
             />
-            <label htmlFor={title.toLowerCase()}>{title}</label>
+            <label className="filter-label" htmlFor={title.toLowerCase()}>
+              {title}
+            </label>
           </div>
         );
       })}

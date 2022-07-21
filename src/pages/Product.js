@@ -131,19 +131,22 @@ function Product() {
 
   return (
     <div className="products">
-      <div className="products-filters">
-        <form className="products-filters-form">
-          {categories && (
-            <>
-              <CategoryFilter
-                categories={categories}
-                handleFilterChange={handleFilterChange}
-              />
-              <PriceFilter handlePriceFilterChange={handlePriceFilterChange} />
-            </>
-          )}
-        </form>
+      <div className="products-category-filter">
+        <h2 className="filter-title">Categories</h2>
+        {categories && (
+          <CategoryFilter
+            categories={categories}
+            handleFilterChange={handleFilterChange}
+          />
+        )}
       </div>
+      <div className="products-price-filter">
+        <h2 className="filter-title">Price Filter</h2>
+        {categories && (
+          <PriceFilter handlePriceFilterChange={handlePriceFilterChange} />
+        )}
+      </div>
+
       <ul className="product-list">
         {products &&
           products.map(function (item, index, arr) {
