@@ -4,7 +4,6 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  /* grid-template-columns: 1fr 1fr; */
 }
 
 .card-price {
@@ -26,7 +25,6 @@
 .card-image {
   width: 150px;
   height: 150px;
-  /* width & height from figma */
 }
 
 .card-image img {

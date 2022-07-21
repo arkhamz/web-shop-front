@@ -1,5 +1,6 @@
 .products {
   width: 100%;
+  display: grid;
 }
 
 .product-list {
@@ -11,7 +12,13 @@
   row-gap: 10px;
 }
 
-/* category */
+/* filters */
+
+/* .products-filters-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+} */
 
 .products-categories {
   width: fit-content;

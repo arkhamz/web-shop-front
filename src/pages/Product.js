@@ -132,7 +132,7 @@ function Product() {
   return (
     <div className="products">
       <div className="products-filters">
-        <form>
+        <form className="products-filters-form">
           {categories && (
             <>
               <CategoryFilter

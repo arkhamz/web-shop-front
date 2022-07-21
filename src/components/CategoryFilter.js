@@ -1,7 +1,9 @@
+import "./CategoryFilter.css";
+
 //Group of category filter checkboxes
 function CategoryFilter({ categories, handleFilterChange }) {
   return (
-    <>
+    <div className="category-filter-container">
       {categories.map(function (cat, index, arr) {
         //get title & id from category object
         const { title, id } = cat; //id is category ID
@@ -19,7 +21,7 @@ function CategoryFilter({ categories, handleFilterChange }) {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
 
