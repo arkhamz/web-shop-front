@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./login.css";
+import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigator = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -13,6 +15,9 @@ function Login() {
       email,
       password,
     });
+
+    //move user to home page
+    navigator("/");
   }
 
   return (
