@@ -7,18 +7,24 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [error, setError] = useState("");
   const navigator = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    await axios.post("http://localhost:4000/users/signup", {
-      email,
-      password,
-    });
-
-    //move user to login page
-    navigator("/login");
+    //reset error in case there was an error on previous submission
+    setError("");
+    //store an error message in state if the passwords don't match
+    if (password !== password2) {
+      setError("Both passwords must match.");
+    } else if (password === password2) {
+      await axios.post("http://localhost:4000/users/signup", {
+        email,
+        password,
+      });
+      //move user to login page
+      navigator("/login");
+    }
   }
 
   return (
@@ -31,6 +37,7 @@ function Signup() {
         <div className="signup-input-container">
           <label htmlFor="signup-email-text">Email Address</label>
           <input
+            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             id="signup-email-text"
@@ -40,15 +47,18 @@ function Signup() {
         <div className="signup-input-container">
           <label htmlFor="signup-email-password">Password</label>
           <input
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             id="signup-email-password"
             type="password"
           />
         </div>
+        {error && <p>{error}</p>}
         <div className="signup-input-container">
           <label htmlFor="signup-email-password-rpt">Repeat Password</label>
           <input
+            required
             value={password2}
             onChange={(e) => setPassword2(e.target.value)}
             id="signup-email-password-rpt"

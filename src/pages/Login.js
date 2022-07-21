@@ -30,6 +30,7 @@ function Login() {
         <div className="login-input-container">
           <label htmlFor="login-email-text">Email Address</label>
           <input
+            required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             id="login-email-text"
@@ -39,6 +40,7 @@ function Login() {
         <div className="login-input-container">
           <label htmlFor="login-email-password">Password</label>
           <input
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             id="login-email-password"
