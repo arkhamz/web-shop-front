@@ -7,6 +7,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [username, setUsername] = useState("");
   const [error, setError] = useState("");
   const navigator = useNavigate();
 
@@ -17,8 +18,10 @@ function Signup() {
     //store an error message in state if the passwords don't match
     if (password !== password2) {
       setError("Both passwords must match.");
+      //clear password fields afterwards?
     } else if (password === password2) {
       await axios.post("http://localhost:4000/users/signup", {
+        name: username,
         email,
         password,
       });
@@ -35,6 +38,16 @@ function Signup() {
           <p>Welcome! Create an account</p>
         </div>
         <div className="signup-input-container">
+          <label htmlFor="signup-email-name">Username</label>
+          <input
+            required
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            id="signup-email-text"
+            type="text"
+          />
+        </div>
+        <div className="signup-input-container">
           <label htmlFor="signup-email-text">Email Address</label>
           <input
             required
@@ -47,6 +60,7 @@ function Signup() {
         <div className="signup-input-container">
           <label htmlFor="signup-email-password">Password</label>
           <input
+            minlength="6"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -58,6 +72,7 @@ function Signup() {
         <div className="signup-input-container">
           <label htmlFor="signup-email-password-rpt">Repeat Password</label>
           <input
+            minlength="6"
             required
             value={password2}
             onChange={(e) => setPassword2(e.target.value)}

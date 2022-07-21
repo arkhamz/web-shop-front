@@ -1,4 +1,5 @@
-//G
+import "./PriceFilter.css";
+
 function PriceFilter({ handlePriceFilterChange }) {
   // State = [[0, 150], [300, 450]]
   return (

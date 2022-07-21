@@ -1,11 +1,24 @@
 /* General styling */
-svg {
+.navbar svg {
   color: white;
+  transition: transform 150ms ease-in;
 }
 
-a {
+.navbar svg:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.navbar a {
   text-decoration: none;
+  display: inline-block;
   color: #0d0e43;
+  transition: transform 150ms ease-in;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+  transform: scale(1.2);
 }
 
 /* Navbar Stuff */

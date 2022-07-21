@@ -1,6 +1,6 @@
 section.signup {
   width: 100%;
-  height: 90vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,10 +9,10 @@ section.signup {
 
 .signup-form {
   width: 50%;
+  margin-top: 40px;
   display: flex;
-  gap: 30px;
+  gap: 20px;
   flex-direction: column;
-  height: 50%;
   background-color: white;
   padding: 8px;
   height: fit-content;
@@ -36,8 +36,7 @@ section.signup {
 }
 
 .signup-form input {
-  /* padding: 7px; */
-  height: 45px;
+  height: 30px;
   border-radius: 5px;
   outline: none;
   border: 1px solid #c2c5e1;

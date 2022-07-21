@@ -53,7 +53,7 @@ function Login() {
         </div>
 
         <div className="login-button">
-          <button>Register</button>
+          <button>Login</button>
         </div>
         <div className="login-query">
           {/* make the "create account" section a link */}
