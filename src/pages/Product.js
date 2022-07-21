@@ -5,7 +5,7 @@ import ProductCard from "../components/ProductCard";
 import CategoryFilter from "../components/CategoryFilter";
 import PriceFilter from "../components/PriceFilter";
 
-function Product({ cartUpdater }) {
+function Product({ cartUpdater, cartState }) {
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [error, setError] = useState(false);
@@ -155,6 +155,7 @@ function Product({ cartUpdater }) {
                 key={item.id}
                 prod={item}
                 cartUpdater={cartUpdater}
+                cartState={cartState}
               />
             );
           })}

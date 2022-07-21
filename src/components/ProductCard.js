@@ -7,7 +7,9 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 
-function ProductCard({ prod, cartUpdater }) {
+import { FaShoppingCart } from "react-icons/fa";
+
+function ProductCard({ prod, cartUpdater, cartState }) {
   //destructure product object's properties
   const { title, description, mainImg, price, rating } = prod;
 
@@ -33,6 +35,14 @@ function ProductCard({ prod, cartUpdater }) {
     cartUpdater(prod);
   };
 
+  const productPageCartBtn = cartState.find((product) => {
+    return product.id === prod.id;
+  }) ? (
+    <FaShoppingCart id="productPageItemCartBtn" onClick={addToCart} />
+  ) : (
+    <AiOutlineShoppingCart id="productPageItemCartBtn" onClick={addToCart} />
+  );
+
   return (
     <div className="product-card">
       <img className="card-image" src={mainImg} alt={title} />
@@ -52,10 +62,7 @@ function ProductCard({ prod, cartUpdater }) {
           <p>{description.substring(0, 100)}...</p>
         </div>
         <div className="card-icons">
-          <AiOutlineShoppingCart
-            id="productPageItemCartBtn"
-            onClick={addToCart}
-          />
+          {productPageCartBtn}
           <AiOutlineHeart />
           <AiOutlineZoomIn />
         </div>

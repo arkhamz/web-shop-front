@@ -100,7 +100,10 @@ function App() {
       <Navbar />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Product cartUpdater={cartUpdater} />} />
+          <Route
+            path="/"
+            element={<Product cartState={cart} cartUpdater={cartUpdater} />}
+          />
 
           <Route
             path="/details/:id"
