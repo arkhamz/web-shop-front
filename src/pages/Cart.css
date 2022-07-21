@@ -1,0 +1,173 @@
+/* whole cart page */
+.cartPageContainer {
+  padding: 30px 15%;
+  transition: padding 0.7s ease-in;
+}
+
+.cartPageContainer h1 {
+  margin: 40px 0px;
+}
+
+/* excluding the links at the top */
+.cartContent {
+  display: flex;
+  gap: 20px;
+}
+
+/* table/list of products including the column names*/
+.cartItems {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.columnNames {
+  display: flex;
+}
+
+.cartH3 {
+  color: #1d3178;
+}
+
+/* columname positioning */
+#priceH3,
+#quantityH3,
+#productTotalH3,
+#totalsH3 {
+  flex: 1;
+}
+
+#productH3 {
+  flex: 2;
+}
+
+/* actual list of products */
+.cartProductList {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartListItem {
+  border-bottom: 1px solid rgb(197, 195, 195);
+  padding: 15px 0px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.deleteItem {
+  position: absolute;
+  right: 0px;
+  visibility: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+.deleteItem:active {
+  transform: translateY(5px);
+}
+
+.cartListItem:hover .deleteItem {
+  visibility: visible;
+}
+
+.cartListItem img {
+  max-width: 50px;
+}
+
+#cartItemTitle,
+#cartItemPrice,
+#cartItemQuantity,
+#cartItemTotal {
+  flex: 1;
+}
+
+#cartItemQuantity {
+  display: flex;
+  justify-content: flex-start;
+}
+
+#cartItemTitle {
+  display: flex;
+  flex: 2;
+}
+
+#quantity {
+  width: 50%;
+}
+
+/* pink btns at bottom */
+.cartListBtns {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.cartListBtns button:active {
+  transform: translateY(5px);
+}
+
+.cartListBtns button {
+  all: unset;
+  padding: 5px 15px;
+  color: white;
+  background-color: hotpink;
+  border-radius: 7px;
+  cursor: pointer;
+}
+/* totals section on the right */
+.cartTotalsDiv {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  height: 280px;
+}
+
+/* grey colored card */
+.totalsProceedCard {
+  padding: 0px 10px;
+  background-color: #e8e6f1;
+  color: #151875;
+  flex: 1;
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+  /* justify-content: ; */
+  border-radius: 7px;
+}
+
+#subTotals,
+#finalTotals {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(197, 195, 195);
+  padding: 5px 0px;
+}
+
+#shipText {
+  color: rgb(134, 130, 130);
+  font-size: 11px;
+}
+
+#proceedButtonDiv {
+  display: flex;
+  justify-content: center;
+}
+#proceedButtonDiv button {
+  all: unset;
+  color: white;
+  background-color: #19d16f;
+  padding: 5px 10%;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1000px) {
+  .cartPageContainer {
+    padding: 30px 0px;
+    min-width: 900px;
+  }
+}

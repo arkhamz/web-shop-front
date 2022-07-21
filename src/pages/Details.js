@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import ProductContainer from "../components/ProductContainer";
 
-function Details() {
+function Details({ cartUpdater, cartState }) {
   const { id } = useParams();
-  console.log(("useparams: ", id));
+
   const [currentProduct, setCurrentProduct] = useState();
 
   //getting the product with the id param
@@ -13,7 +13,7 @@ function Details() {
     const getProductDetails = async () => {
       try {
         const product = await axios.get(`http://localhost:4000/products/${id}`);
-        console.log(product.data);
+
         setCurrentProduct(product.data);
       } catch (e) {
         console.log(e.message);
@@ -28,7 +28,11 @@ function Details() {
       {!currentProduct ? (
         "nothing yet!"
       ) : (
-        <ProductContainer object={currentProduct} />
+        <ProductContainer
+          cartState={cartState}
+          cartUpdater={cartUpdater}
+          object={currentProduct}
+        />
       )}
     </div>
   );
