@@ -32,8 +32,8 @@ function Navbar() {
           <AiOutlineSearch className="search" />
         </div>
         <div className="icons">
-          <FaRegUser />
-          <Link to="/cart">
+          <FaRegUser title="Go to Account" />
+          <Link title="Go to Cart" to="/cart">
             <AiOutlineShoppingCart />
           </Link>
           <AiOutlineHeart />

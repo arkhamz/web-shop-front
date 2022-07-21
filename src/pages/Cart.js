@@ -109,10 +109,10 @@ const Cart = ({ cartState, cartUpdater }) => {
           </div>
           <div className="totalsProceedCard">
             <div id="subTotals">
-              <h4>Subtotals:</h4> <h4>{subtotals}</h4>
+              <h4>Subtotals:</h4> <h4>€{subtotals}</h4>
             </div>
             <div id="finalTotals">
-              <h4>Totals:</h4> <h4>{(subtotals * 1.3).toFixed(2)}</h4>
+              <h4>Totals:</h4> <h4>€{(subtotals * 1.3).toFixed(2)}</h4>
             </div>
             <div id="shipText">
               <p>🟢 Shipping & taxes calculated at checkout</p>

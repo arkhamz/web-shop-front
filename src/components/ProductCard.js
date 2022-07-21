@@ -38,9 +38,17 @@ function ProductCard({ prod, cartUpdater, cartState }) {
   const productPageCartBtn = cartState.find((product) => {
     return product.id === prod.id;
   }) ? (
-    <FaShoppingCart id="productPageItemCartBtn" onClick={addToCart} />
+    <FaShoppingCart
+      title="Added to Cart"
+      id="productPageItemCartBtn"
+      onClick={addToCart}
+    />
   ) : (
-    <AiOutlineShoppingCart id="productPageItemCartBtn" onClick={addToCart} />
+    <AiOutlineShoppingCart
+      title="Add to Cart"
+      id="productPageItemCartBtn"
+      onClick={addToCart}
+    />
   );
 
   return (

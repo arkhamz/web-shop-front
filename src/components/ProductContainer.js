@@ -67,7 +67,7 @@ const ProductContainer = ({ cartState, cartUpdater, object }) => {
       <div className="productContainer">
         {/* three containers to house the details and description/review tabs and links */}
         <div className="links">
-          <Link to="/products">Products . </Link>{" "}
+          <Link to="/">Products . </Link>{" "}
           <span style={{ color: "hotpink" }}>{object.title}</span>
         </div>
         <div className="productContent">
