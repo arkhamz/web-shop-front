@@ -5,6 +5,9 @@ import Product from "./pages/Product";
 import Details from "./pages/Details";
 import Cart from "./pages/Cart";
 import { useState } from "react";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+
 
 function App() {
   const [cart, setCart] = useState([
@@ -97,6 +100,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<Product />} />
+
           <Route
             path="/details/:id"
             element={<Details cartState={cart} cartUpdater={cartUpdater} />}
@@ -107,6 +111,10 @@ function App() {
             path="/cart"
             element={<Cart cartState={cart} cartUpdater={cartUpdater} />}
           />
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+
         </Routes>
       </div>
     </div>
