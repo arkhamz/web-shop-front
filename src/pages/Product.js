@@ -19,7 +19,8 @@ function Product() {
       async function getProducts() {
         //URL
         const URL = "http://localhost:4000/products";
-        setLoading(true);
+        //only set loading to true if not filtering
+        if (!categoryIds || !pricePairs) setLoading(true);
         //fetch the data
         try {
           const response = await axios.get(URL);
@@ -44,9 +45,14 @@ function Product() {
               let verdict;
 
               for (const pair of pricePairs) {
-                if (item.price >= pair[0] && item.price < pair[1]) {
+                if (item.price >= pair[0] && item.price <= pair[1]) {
                   verdict = true;
-                } else {
+                  //initially left this as just an else block
+                  //caused bug where 2nd/last category/filter took priorirt
+                  //changing it to an else-if with opposite condition, fixed problem
+                  //knew the problem was happening due to something with this if-else statement
+                  //as this determined what was filtered
+                } else if (!item.price >= pair[0] && !item.price <= pair[1]) {
                   verdict = false;
                 }
               }
@@ -132,7 +138,7 @@ function Product() {
   return (
     <div className="products">
       <div className="products-category-filter">
-        <h2 className="filter-title">Categories</h2>
+        {categories && <h2 className="filter-title">Categories</h2>}
         {categories && (
           <CategoryFilter
             categories={categories}
@@ -141,7 +147,7 @@ function Product() {
         )}
       </div>
       <div className="products-price-filter">
-        <h2 className="filter-title">Price Filter</h2>
+        {categories && <h2 className="filter-title">Price filter</h2>}
         {categories && (
           <PriceFilter handlePriceFilterChange={handlePriceFilterChange} />
         )}
@@ -154,7 +160,7 @@ function Product() {
           })}
       </ul>
       {error && <h1>{error}</h1>}
-      {loading && <h1>Loading...</h1>}
+      {loading && <h1 className="loading">...</h1>}
     </div>
   );
 }
