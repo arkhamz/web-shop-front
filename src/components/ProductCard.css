@@ -46,6 +46,15 @@
   color: #535399;
 }
 
+#productPageItemCartBtn {
+  transition: transform 150ms ease-in;
+  cursor: pointer;
+}
+
+#productPageItemCartBtn:hover {
+  transform: scale(1.2);
+}
+
 .card-stars svg {
   color: #ffc416;
 }
