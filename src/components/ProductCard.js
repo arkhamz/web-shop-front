@@ -7,7 +7,7 @@ import {
   AiOutlineStar,
 } from "react-icons/ai";
 
-function ProductCard({ prod }) {
+function ProductCard({ prod, cartUpdater }) {
   //destructure product object's properties
   const { title, description, mainImg, price, rating } = prod;
 
@@ -26,6 +26,11 @@ function ProductCard({ prod }) {
       }
     }
     return starrArr;
+  };
+
+  const addToCart = () => {
+    console.log(prod);
+    cartUpdater(prod);
   };
 
   return (
@@ -47,7 +52,10 @@ function ProductCard({ prod }) {
           <p>{description.substring(0, 100)}...</p>
         </div>
         <div className="card-icons">
-          <AiOutlineShoppingCart />
+          <AiOutlineShoppingCart
+            id="productPageItemCartBtn"
+            onClick={addToCart}
+          />
           <AiOutlineHeart />
           <AiOutlineZoomIn />
         </div>

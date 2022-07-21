@@ -5,7 +5,7 @@ import ProductCard from "../components/ProductCard";
 import CategoryFilter from "../components/CategoryFilter";
 import PriceFilter from "../components/PriceFilter";
 
-function Product() {
+function Product({ cartUpdater }) {
   const [products, setProducts] = useState(null);
   const [categories, setCategories] = useState(null);
   const [error, setError] = useState(false);
@@ -150,7 +150,13 @@ function Product() {
       <ul className="product-list">
         {products &&
           products.map(function (item, index, arr) {
-            return <ProductCard key={item.id} prod={item} />;
+            return (
+              <ProductCard
+                key={item.id}
+                prod={item}
+                cartUpdater={cartUpdater}
+              />
+            );
           })}
       </ul>
       {error && <h1>{error}</h1>}

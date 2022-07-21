@@ -8,7 +8,6 @@ import { useState } from "react";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
-
 function App() {
   const [cart, setCart] = useState([
     {
@@ -66,12 +65,12 @@ function App() {
 
       return setCart(cartRemoved);
     }
-
+    //remove everything from cart
     if (string === "all") {
       return setCart([]);
     }
 
-    //make sure that if there is no quantity yet that it inserts 1 as quantity !!! THIS IS ONLY FOR DEVELOPMENT
+    //make sure that if there is no quantity yet that it inserts 1 as quantity and also adds a total price
     if (!productObject.quantity || !productObject.total) {
       productObject.quantity = 1;
       const totalProdPrice = productObject.quantity * productObject.price;
@@ -94,12 +93,14 @@ function App() {
     }
   };
 
+  console.log(cart);
+
   return (
     <div className="App">
       <Navbar />
       <div className="content">
         <Routes>
-          <Route path="/" element={<Product />} />
+          <Route path="/" element={<Product cartUpdater={cartUpdater} />} />
 
           <Route
             path="/details/:id"
@@ -114,7 +115,6 @@ function App() {
           <Route path="/details/:id" element={<Details />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-
         </Routes>
       </div>
     </div>

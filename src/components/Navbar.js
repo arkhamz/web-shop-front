@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./Navbar.css";
 import { FaRegUser } from "react-icons/fa";
 import {
@@ -33,7 +33,9 @@ function Navbar() {
         </div>
         <div className="icons">
           <FaRegUser />
-          <AiOutlineShoppingCart />
+          <Link to="/cart">
+            <AiOutlineShoppingCart />
+          </Link>
           <AiOutlineHeart />
         </div>
       </div>
