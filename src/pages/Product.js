@@ -28,7 +28,44 @@ function Product() {
           //store fetched data in state and set loading to false
           //if categoriesArr contains anything, filter db for items whose category id matches
           //filter products by category Ids
-          if (categoryIds.length > 0) {
+          //-----------------------------------------------------------------------
+          //combination did not work if i put the below combination check last, in roder of writing
+          //moved it to the top and it works
+          //why?
+
+          //leaving as multiple if statements then broke the category + price combo
+          //changing to if, else if, else if fixed it, why
+
+          if (categoryIds.length > 0 && pricePairs.length > 0) {
+            //filter by category then by price
+            const filteredByCategory = dbProducts.filter(function (
+              item,
+              index,
+              arr
+            ) {
+              return categoryIds.includes(item.categoryId);
+            });
+            //filter by price pairs
+            const filteredCategoryPrice = filteredByCategory.filter(function (
+              item,
+              index,
+              arr
+            ) {
+              let verdict;
+
+              for (const pair of pricePairs) {
+                if (item.price >= pair[0] && item.price <= pair[1]) {
+                  verdict = true;
+                } else if (!item.price >= pair[0] && !item.price <= pair[1]) {
+                  verdict = false;
+                }
+              }
+              return verdict;
+            });
+
+            setProducts(filteredCategoryPrice);
+            return setLoading(false);
+          } else if (categoryIds.length > 0) {
             const filtered = dbProducts.filter(function (item, index, arr) {
               return categoryIds.includes(item.categoryId);
             });
@@ -37,9 +74,7 @@ function Product() {
             //return out of this otherwise the filter is overwritten by
             //setProducts down there
             return setLoading(false);
-          }
-
-          if (pricePairs.length > 0) {
+          } else if (pricePairs.length > 0) {
             //check if each product's price is  equal to min and less than or equal to max
             const filtered = dbProducts.filter(function (item, index, arr) {
               let verdict;
