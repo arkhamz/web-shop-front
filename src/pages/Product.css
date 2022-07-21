@@ -14,11 +14,11 @@
 
 /* filters */
 
-.products-filters-form {
+/* .products-filters-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+} */
 
 .products-categories {
   width: fit-content;
