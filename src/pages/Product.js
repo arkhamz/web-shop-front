@@ -15,7 +15,7 @@ function Product() {
 
   useEffect(
     function () {
-      //function for fetching products
+      //function for fetching products & filtering
       async function getProducts() {
         //URL
         const URL = "http://localhost:4000/products";
@@ -25,16 +25,6 @@ function Product() {
         try {
           const response = await axios.get(URL);
           const dbProducts = response.data;
-          //store fetched data in state and set loading to false
-          //if categoriesArr contains anything, filter db for items whose category id matches
-          //filter products by category Ids
-          //-----------------------------------------------------------------------
-          //combination did not work if i put the below combination check last, in roder of writing
-          //moved it to the top and it works
-          //why?
-
-          //leaving as multiple if statements then broke the category + price combo
-          //changing to if, else if, else if fixed it, why
 
           if (categoryIds.length > 0 && pricePairs.length > 0) {
             //filter by category then by price
@@ -52,7 +42,7 @@ function Product() {
               arr
             ) {
               let verdict;
-
+              //Could refactor below into a function
               for (const pair of pricePairs) {
                 if (item.price >= pair[0] && item.price <= pair[1]) {
                   verdict = true;
@@ -71,22 +61,16 @@ function Product() {
             });
             console.log(filtered);
             setProducts(filtered);
-            //return out of this otherwise the filter is overwritten by
-            //setProducts down there
             return setLoading(false);
           } else if (pricePairs.length > 0) {
             //check if each product's price is  equal to min and less than or equal to max
+            //could refactor this
             const filtered = dbProducts.filter(function (item, index, arr) {
               let verdict;
 
               for (const pair of pricePairs) {
                 if (item.price >= pair[0] && item.price <= pair[1]) {
                   verdict = true;
-                  //initially left this as just an else block
-                  //caused bug where 2nd/last category/filter took priorirt
-                  //changing it to an else-if with opposite condition, fixed problem
-                  //knew the problem was happening due to something with this if-else statement
-                  //as this determined what was filtered
                 } else if (!item.price >= pair[0] && !item.price <= pair[1]) {
                   verdict = false;
                 }
@@ -144,7 +128,7 @@ function Product() {
       const min = Number(e.target.dataset.min);
       const pair = [min, max];
 
-      //returns true if pair is inside pricePair Arr
+      //Return true if the pair is already inside pricePairs, returns false if not
       const isIncluded = pricePairs.find(function (item) {
         if (item[0] === pair[0] && item[1] === pair[1]) {
           return true;
@@ -153,22 +137,20 @@ function Product() {
         }
       });
 
-      //if the pair is already included in pricepairs, remove it
+      //if pair is already included in pricepairs, remove it
       if (isIncluded) {
         const updated = pricePairs.filter(function (item, index) {
           return item[0] !== min && item[1] !== max;
         });
         setPricePairs(updated);
       } else {
-        //add pair to pricePairs
+        //pair is not inside pricePairs, add it to the arr
         setPricePairs([...pricePairs, pair]);
       }
     } else {
       return;
     }
   }
-
-  console.log(pricePairs);
 
   return (
     <div className="products">
