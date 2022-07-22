@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import { useState } from "react";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Header from "./components/Header";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -54,6 +55,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <Header />
       <div className="content">
         <Routes>
           <Route
