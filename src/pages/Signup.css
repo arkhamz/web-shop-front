@@ -9,7 +9,7 @@ section.signup {
 
 .signup-form {
   width: 50%;
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   gap: 20px;
   flex-direction: column;
