@@ -1,5 +1,6 @@
 #tabContent {
   padding: 40px 0px;
+  display: flex;
 }
 
 #tabContent h3 {

@@ -8,6 +8,11 @@
   flex-direction: column;
 }
 
+.productContainer-productTabs {
+  display: flex;
+  flex-direction: column;
+}
+
 /* link styling */
 .productContainer a,
 a:active,
