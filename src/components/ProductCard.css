@@ -62,3 +62,11 @@
 .card-stars .empty {
   color: #b2b2b2;
 }
+
+.product-link {
+  text-decoration: none;
+}
+
+.product-link:hover .product-card {
+  box-shadow: 0px 4px 3px #696767;
+}

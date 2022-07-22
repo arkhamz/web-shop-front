@@ -8,10 +8,11 @@ import {
 } from "react-icons/ai";
 
 import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function ProductCard({ prod, cartUpdater, cartState }) {
   //destructure product object's properties
-  const { title, description, mainImg, price, rating } = prod;
+  const { title, description, mainImg, price, rating, id } = prod;
 
   const generateStars = (rating) => {
     const starrArr = []; //this will eventually contain an array of stars
@@ -52,30 +53,32 @@ function ProductCard({ prod, cartUpdater, cartState }) {
   );
 
   return (
-    <div className="product-card">
-      <img className="card-image" src={mainImg} alt={title} />
-      <div className="card-content">
-        <div className="card-title">
-          <h5>{title}</h5>
-        </div>
-        <div className="card-price">
-          <p>€{price}</p>
-          <div className="card-stars">
-            {generateStars(rating).map((star, i) => (
-              <span key={i}>{star}</span>
-            ))}
+    <Link className="product-link" to={`/details/${id}`}>
+      <div className="product-card">
+        <img className="card-image" src={mainImg} alt={title} />
+        <div className="card-content">
+          <div className="card-title">
+            <h5>{title}</h5>
+          </div>
+          <div className="card-price">
+            <p>€{price}</p>
+            <div className="card-stars">
+              {generateStars(rating).map((star, i) => (
+                <span key={i}>{star}</span>
+              ))}
+            </div>
+          </div>
+          <div className="card-text">
+            <p>{description.substring(0, 100)}...</p>
+          </div>
+          <div className="card-icons">
+            {productPageCartBtn}
+            <AiOutlineHeart />
+            <AiOutlineZoomIn />
           </div>
         </div>
-        <div className="card-text">
-          <p>{description.substring(0, 100)}...</p>
-        </div>
-        <div className="card-icons">
-          {productPageCartBtn}
-          <AiOutlineHeart />
-          <AiOutlineZoomIn />
-        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
