@@ -1,5 +1,5 @@
 import "./CategoryFilter.css";
-
+import { useState } from "react";
 //Group of category filter checkboxes
 function CategoryFilter({ categories, handleFilterChange }) {
   return (

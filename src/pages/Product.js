@@ -15,38 +15,63 @@ function Product({ cartUpdater, cartState }) {
 
   useEffect(
     function () {
-      //function for fetching products
+      //function for fetching products & filtering
       async function getProducts() {
         //URL
         const URL = "http://localhost:4000/products";
-        setLoading(true);
+        //only set loading to true if not filtering
+        if (!categoryIds || !pricePairs) setLoading(true);
         //fetch the data
         try {
           const response = await axios.get(URL);
           const dbProducts = response.data;
-          //store fetched data in state and set loading to false
-          //if categoriesArr contains anything, filter db for items whose category id matches
-          //filter products by category Ids
-          if (categoryIds.length > 0) {
+
+          if (categoryIds.length > 0 && pricePairs.length > 0) {
+            //filter by category then by price
+            const filteredByCategory = dbProducts.filter(function (
+              item,
+              index,
+              arr
+            ) {
+              return categoryIds.includes(item.categoryId);
+            });
+            //filter by price pairs
+            const filteredCategoryPrice = filteredByCategory.filter(function (
+              item,
+              index,
+              arr
+            ) {
+              let verdict;
+              //Could refactor below into a function
+              for (const pair of pricePairs) {
+                if (item.price >= pair[0] && item.price <= pair[1]) {
+                  verdict = true;
+                } else if (!item.price >= pair[0] && !item.price <= pair[1]) {
+                  verdict = false;
+                }
+              }
+              return verdict;
+            });
+
+            setProducts(filteredCategoryPrice);
+            return setLoading(false);
+          } else if (categoryIds.length > 0) {
             const filtered = dbProducts.filter(function (item, index, arr) {
               return categoryIds.includes(item.categoryId);
             });
             console.log(filtered);
             setProducts(filtered);
-            //return out of this otherwise the filter is overwritten by
-            //setProducts down there
             return setLoading(false);
-          }
-
-          if (pricePairs.length > 0) {
+          } else if (pricePairs.length > 0) {
             //check if each product's price is  equal to min and less than or equal to max
+            //could refactor this
             const filtered = dbProducts.filter(function (item, index, arr) {
               let verdict;
 
               for (const pair of pricePairs) {
-                if (item.price >= pair[0] && item.price < pair[1]) {
+                if (item.price >= pair[0] && item.price <= pair[1]) {
                   verdict = true;
-                } else {
+                } else if (!item.price >= pair[0] && !item.price <= pair[1]) {
                   verdict = false;
                 }
               }
@@ -103,7 +128,7 @@ function Product({ cartUpdater, cartState }) {
       const min = Number(e.target.dataset.min);
       const pair = [min, max];
 
-      //returns true if pair is inside pricePair Arr
+      //Return true if the pair is already inside pricePairs, returns false if not
       const isIncluded = pricePairs.find(function (item) {
         if (item[0] === pair[0] && item[1] === pair[1]) {
           return true;
@@ -112,14 +137,14 @@ function Product({ cartUpdater, cartState }) {
         }
       });
 
-      //if the pair is already included in pricepairs, remove it
+      //if pair is already included in pricepairs, remove it
       if (isIncluded) {
         const updated = pricePairs.filter(function (item, index) {
           return item[0] !== min && item[1] !== max;
         });
         setPricePairs(updated);
       } else {
-        //add pair to pricePairs
+        //pair is not inside pricePairs, add it to the arr
         setPricePairs([...pricePairs, pair]);
       }
     } else {
@@ -127,12 +152,10 @@ function Product({ cartUpdater, cartState }) {
     }
   }
 
-  console.log(pricePairs);
-
   return (
     <div className="products">
       <div className="products-category-filter">
-        <h2 className="filter-title">Categories</h2>
+        {categories && <h2 className="filter-title">Categories</h2>}
         {categories && (
           <CategoryFilter
             categories={categories}
@@ -141,7 +164,7 @@ function Product({ cartUpdater, cartState }) {
         )}
       </div>
       <div className="products-price-filter">
-        <h2 className="filter-title">Price Filter</h2>
+        {categories && <h2 className="filter-title">Price filter</h2>}
         {categories && (
           <PriceFilter handlePriceFilterChange={handlePriceFilterChange} />
         )}
@@ -161,7 +184,7 @@ function Product({ cartUpdater, cartState }) {
           })}
       </ul>
       {error && <h1>{error}</h1>}
-      {loading && <h1>Loading...</h1>}
+      {loading && <h1 className="loading">...</h1>}
     </div>
   );
 }

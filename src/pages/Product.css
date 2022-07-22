@@ -52,10 +52,28 @@
   color: #989bb5;
 }
 
-.checked {
+.filter-title {
+  color: #292c58;
+  font-family: "Crimson Pro";
+}
+
+/* .checked {
   accent-color: #ff3eb2;
+}
+
+.unchecked {
+  accent-color: #ffdbf1;
+} */
+
+.loading {
+  opacity: 1;
+  transition: opacity 100ms ease-in;
 }
 
 input[type="checkbox"] {
   accent-color: #ffdbf1;
+}
+
+input[type="checkbox"]:focus {
+  accent-color: #ff3eb2;
 }
