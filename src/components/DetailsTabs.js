@@ -1,9 +1,9 @@
 import { useState } from "react";
 import "./DetailsTabs.css";
+import Reviews from "./Reviews";
 
 const DetailsTabs = ({ description }) => {
   const [activeTab, setActiveTab] = useState("Description");
-  const [allReviews, setAllReviews] = useState("");
 
   const tabSwitcher = (e) => {
     // console.log(e.target.textContent);
@@ -37,13 +37,6 @@ const DetailsTabs = ({ description }) => {
     </div>
   );
 
-  //make the div that renders when 'reviews' is active
-  const reviewDiv = (
-    <div className="reviewDiv">
-      {!allReviews ? "No Reviews Yet" : "write this later"}
-    </div>
-  );
-
   return (
     <div className="productTabs">
       <button
@@ -66,11 +59,13 @@ const DetailsTabs = ({ description }) => {
       </button>
 
       <div id="tabContent">
-        {activeTab === "Description"
-          ? descriptionDiv
-          : activeTab === "Reviews"
-          ? reviewDiv
-          : additionalInfoDiv}
+        {activeTab === "Description" ? (
+          descriptionDiv
+        ) : activeTab === "Reviews" ? (
+          <Reviews />
+        ) : (
+          additionalInfoDiv
+        )}
       </div>
     </div>
   );

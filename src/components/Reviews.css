@@ -1,0 +1,8 @@
+.reviewContainer {
+  overflow: scroll;
+}
+
+.reviewInstance {
+  display: inline;
+  /* width: 100%; */
+}
