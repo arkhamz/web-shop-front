@@ -8,6 +8,7 @@ import { useState } from "react";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -78,6 +79,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }

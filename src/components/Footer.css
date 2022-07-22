@@ -1,0 +1,43 @@
+footer {
+  height: 40vh;
+  width: 100%;
+  background-color: #0d0e43;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer h4 {
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.footer-title {
+  margin-left: 10px;
+}
+
+footer .category-text,
+footer .account-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  color: #8a8fb9;
+}
+
+.footer-social {
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.footer-social-icons {
+  display: flex;
+  justify-content: center;
+  color: white;
+  gap: 5px;
+}
