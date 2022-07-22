@@ -9,7 +9,7 @@ section.signup {
 
 .signup-form {
   width: 50%;
-  margin-top: 40px;
+  margin-top: 20px;
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -60,11 +60,17 @@ section.signup {
   box-shadow: 0px 0px 2px #9096b2;
 }
 
-.signup-query {
+.signup-query,
+.signup-query a {
   color: #9096b2;
   text-align: center;
+  text-decoration: none;
 }
 
 .signup label {
   color: #9096b2;
+}
+
+.signup-query a:hover {
+  text-decoration: underline;
 }
