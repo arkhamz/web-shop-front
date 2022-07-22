@@ -1,5 +1,5 @@
 import "./ProductContainer.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   AiFillStar,
   AiOutlineStar,
@@ -7,9 +7,11 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 import DetailsTabs from "./DetailsTabs";
+import axios from "axios";
 
 //component body
 const ProductContainer = ({ cartState, cartUpdater, object }) => {
+  const { id } = useParams();
   //add state to manage whether the cart button shows 'add to cart' or 'added already'
 
   //function to insert stars according to rating
@@ -62,8 +64,53 @@ const ProductContainer = ({ cartState, cartUpdater, object }) => {
     console.log("you clicked: ", e.target);
   };
 
+  //add a review to db with a div that pops up
+  const addReview = () => {
+    //make form visible
+    const form = document.querySelector("#addReviewForm");
+    form.setAttribute("style", "display: block");
+  };
+
+  const postReview = async (e) => {
+    e.preventDefault();
+    const reviewName = e.target.reviewName.value;
+    const reviewText = e.target.reviewInputText.value;
+
+    console.log(e.target.reviewInputText.value);
+
+    try {
+      await axios.post(`http://localhost:4000/products/${id}/reviews`, {
+        reviewName,
+        reviewText,
+      });
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    const form = document.querySelector("#addReviewForm");
+    form.setAttribute("style", "display: none");
+  };
+
   return (
     <div className="productContainer-productTabs">
+      <div id="addReviewForm">
+        <form onSubmit={postReview}>
+          <label htmlFor="reviewName">
+            Name: <br />
+            <input id="reviewName" type="text" />
+          </label>
+          <br />
+          <br />
+          <label htmlFor="reviewInputText">
+            {" "}
+            Your review: <br />
+            <textarea id="reviewInputText" type="text-" rows="10" cols="50" />
+          </label>
+          <br />
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
       <div className="productContainer">
         {/* three containers to house the details and description/review tabs and links */}
         <div className="links">
@@ -81,7 +128,9 @@ const ProductContainer = ({ cartState, cartUpdater, object }) => {
             <span className="starSpan">
               {generateStars(object.rating)}
             </span>{" "}
-            <button onClick={btnPlaceholderFunc}>Add Review</button>
+            <button id="addReviewButton" onClick={addReview}>
+              Add Review
+            </button>
             <br />
             <span>€{object.price}</span>
             <br />

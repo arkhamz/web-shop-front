@@ -11,6 +11,7 @@
 .productContainer-productTabs {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* link styling */
@@ -105,4 +106,15 @@ img {
 .productTabs p {
   min-width: 600px;
   max-width: 601px;
+}
+
+#addReviewForm {
+  position: absolute;
+  left: 50%;
+  top: 200px;
+  background-color: #f9f8fe;
+  padding: 30px;
+  border-radius: 7px;
+  box-shadow: 0px 0px 20px 5px gray;
+  display: none;
 }
