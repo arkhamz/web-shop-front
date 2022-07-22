@@ -1,0 +1,25 @@
+.reviewContainer {
+  overflow: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 200px;
+}
+
+.reviewInstance {
+  width: 50%;
+}
+
+.reviewInstance p {
+  margin: 20px 0px;
+  /* text-decoration: underline; */
+}
+
+.reviewRating svg {
+  color: #ffc416;
+}
+
+.reviewText {
+  font-weight: bold;
+}
