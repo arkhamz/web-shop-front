@@ -60,11 +60,17 @@ section.signup {
   box-shadow: 0px 0px 2px #9096b2;
 }
 
-.signup-query {
+.signup-query,
+.signup-query a {
   color: #9096b2;
   text-align: center;
+  text-decoration: none;
 }
 
 .signup label {
   color: #9096b2;
+}
+
+.signup-query a:hover {
+  text-decoration: underline;
 }
